@@ -115,7 +115,7 @@ public class IntArrayWorker
         
        return count;
   }
-  /*
+  
   public int getLargest()
   {
       int max = matrix[0][0];
@@ -123,9 +123,22 @@ public class IntArrayWorker
       {
             for (int number: oneDArray)
             {
+                if (number>max)
+                {
+                        max=number;
+                }
             }
         }
+      return max;
   }
-  */
   
-}//end clas
+  public int getColTotal(int col)
+  {
+      int sum=0;
+      for (int i=0; i<matrix.length; i++)
+      {
+          sum+=matrix[i][col];
+      }
+      return sum;
+  }
+}//end class
