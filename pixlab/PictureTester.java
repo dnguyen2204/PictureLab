@@ -35,9 +35,9 @@ public class PictureTester
 
   public static void testKeepOnlyBlue()
   {
-        Picture beach = new Picture("beach.jpg");
+    Picture beach = new Picture("beach.jpg");
     beach.explore();
-    beach.zeroGreen();
+    beach.keepOnlyBlue();
     beach.explore();
   }
   /** Method to test mirrorVertical */

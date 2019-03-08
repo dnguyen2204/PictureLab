@@ -105,7 +105,6 @@ public class Picture extends SimplePicture
       {
           for (Pixel p: row)
           {
-              //int red = p.getRed();
               p.setRed(0);
           }
       }
