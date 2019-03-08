@@ -32,12 +32,29 @@ public class PictureTester
     beach.zeroGreen();
     beach.explore();
   }
-
+  
+  //CHANGES
   public static void testKeepOnlyBlue()
   {
     Picture beach = new Picture("beach.jpg");
     beach.explore();
     beach.keepOnlyBlue();
+    beach.explore();
+  }
+  
+  public static void testNegate()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.negate();
+    beach.explore();
+  }
+  
+  public static void testGrayscale()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.grayscale();
     beach.explore();
   }
   /** Method to test mirrorVertical */
