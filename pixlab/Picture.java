@@ -96,8 +96,51 @@ public class Picture extends SimplePicture
         pixelObj.setBlue(0);
       }
     }
-  }
+  }//END zeroBlue()
   
+  public void zeroRed()
+  {
+      Pixel[][] picture = this.getPixels2D();
+      for (Pixel[] row: picture)
+      {
+          for (Pixel p: row)
+          {
+              //int red = p.getRed();
+              p.setRed(0);
+          }
+      }
+  }//END zeroRed()
+  
+  public void zeroGreen()
+  {
+      Pixel[][] picture = this.getPixels2D();
+      for (Pixel[] row: picture)
+      {
+          for (Pixel p: row)
+          {
+              p.setGreen(0);
+          }
+      }
+  }
+        
+ 
+  public void negate()
+  {
+      Pixel[][] picture = this.getPixels2D();
+      for (Pixel[] row: picture)
+      {
+          for (Pixel p: row)
+          {
+              int negateFrom = 255;
+              int red = p.getRed();
+              int blue = p.getBlue();
+              int green = p.getGreen();
+              p.setRed(negateFrom-red);
+              p.setBlue(negateFrom-blue);
+              p.setGreen(negateFrom-green);
+          }
+      }
+  }
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
     * from left to right */
@@ -217,6 +260,19 @@ public class Picture extends SimplePicture
     }
   }
   
+  /*
+   * Dan's changes
+   */
+  
+  public void keepOnlyBlue()
+  {
+      Pixel[][] picture = this.getPixels2D();
+      zeroRed();
+      zeroGreen(); 
+  }
+        
+ 
+ 
   
   /* Main method for testing - each class in Java can have a main 
    * method 
