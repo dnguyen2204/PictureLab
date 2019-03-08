@@ -57,6 +57,14 @@ public class PictureTester
     beach.grayscale();
     beach.explore();
   }
+  
+  public static void testFixUnderWater()
+  {
+    Picture beach = new Picture("water.jpg");
+    beach.explore();
+    beach.fixUnderwater();
+    beach.explore();
+  }
   /** Method to test mirrorVertical */
   public static void testMirrorVertical()
   {
