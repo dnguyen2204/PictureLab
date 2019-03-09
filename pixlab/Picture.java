@@ -173,11 +173,22 @@ public class Picture extends SimplePicture
       {
           for (Pixel p: row)
           {
-              if (p.getRed()>50)//anything >50 is NOT  afush
+              int red = p.getRed();
+              int green = p.getGreen();
+              int blue = p.getBlue();
+              
+              /*
+              //darken image
+              int dark = 20; //darkness facor
+              p.setRed(red-dark);
+              p.setGreen(green-dark);
+              p.setBlue(blue-dark);
+              */
+              
+              //filter, based on ORIGINAL values
+              if (red<25 && green>155)
               {
-                  p.setRed(0);
-                  p.setGreen(0);
-                  p.setBlue(0);
+                  p.setRed(255);
               }
           }
       }
