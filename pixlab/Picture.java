@@ -230,22 +230,39 @@ public class Picture extends SimplePicture
     } 
   }
   
-  public void mirrorHorizontal()//top to bottom
+  public void mirrorHorizontal()//top to bottom 
   {
     Pixel[][] pixels = this.getPixels2D();
     Pixel topPixel = null;
     Pixel bottomPixel = null;
     int height = pixels.length;
-    for (int row=0; row<pixels.length; row++)
+    for (int row=0; row<pixels.length/2; row++)
     {
-        for (int col=0; col<pixels[0].length/2; col++)
+        for (int col=0; col<pixels[0].length; col++)
         {
               topPixel = pixels[row][col];
-              bottomPixel = pixels[height-1-col][col];
+              bottomPixel = pixels[height-1-row][col];
               bottomPixel.setColor(topPixel.getColor());
         }
     }
   }
+  
+  public void mirrorHorizontalBotToTop()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    Pixel topPixel = null;
+    Pixel bottomPixel = null;
+    int height = pixels.length;
+    for (int row=0; row<pixels.length/2; row++)
+    {
+        for (int col=0; col<pixels[0].length; col++)
+        {
+              topPixel = pixels[row][col];
+              bottomPixel = pixels[height-1-row][col];
+              topPixel.setColor(bottomPixel.getColor());
+        }
+    }
+  }  
   /** Mirror just part of a picture of a temple */
   public void mirrorTemple()
   {
@@ -266,6 +283,28 @@ public class Picture extends SimplePicture
         rightPixel = pixels[row]                       
                          [mirrorPoint - col + mirrorPoint];
         rightPixel.setColor(leftPixel.getColor());
+      }
+    }
+  }
+  
+  public void mirrorArms()// its *fine*
+  {
+    int mirrorPoint = 196;
+    Pixel topPixel = null;
+    Pixel bottomPixel = null;
+    int count = 0;
+    Pixel[][] pixels = this.getPixels2D();
+    
+    // loop through the rows
+    for (int row = 158; row < mirrorPoint; row++)
+    {
+      // loop from 13 to just before the mirror point
+      for (int col = 104; col < 295; col++)
+      {
+        
+        topPixel = pixels[row][col];      
+        bottomPixel = pixels[mirrorPoint+mirrorPoint-row][col];
+        bottomPixel.setColor(topPixel.getColor());
       }
     }
   }
