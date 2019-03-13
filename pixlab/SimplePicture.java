@@ -420,6 +420,8 @@ public class SimplePicture implements DigitalPicture
  {
    // create a copy of the current picture and explore it
    new PictureExplorer(new SimplePicture(this));
+   
+   
  }
  
  /**

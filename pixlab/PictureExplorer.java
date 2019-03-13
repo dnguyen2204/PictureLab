@@ -105,6 +105,7 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
     this.picture=picture;
     zoomFactor=1;
     
+    
     // create the window and set things up
     createWindow();
   }
