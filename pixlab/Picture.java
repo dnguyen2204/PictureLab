@@ -287,7 +287,7 @@ public class Picture extends SimplePicture
     }
   }
   
-  public void mirrorArms()// its *fine*
+  public void mirrorArms()// mirrors across a horizontal line
   {
     int mirrorPoint = 196;
     Pixel topPixel = null;
@@ -309,7 +309,7 @@ public class Picture extends SimplePicture
     }
   }
   
-  public void mirrorGull()// its *fine*
+  public void mirrorGull()//mirrors across a vertical line
   {
     int mirrorPoint = 344;
     Pixel leftPixel = null;
@@ -362,19 +362,27 @@ public class Picture extends SimplePicture
     }   
   }
 
-public void copy(Picture fromPic, 
-                 int startRow, int startCol, int endRow, int endCol)
+public void copy(Picture fromPic,
+                  //where to put it
+                 int startRow, int startCol,
+                 //creates box for the from image
+                 int startRowFrom, int startColFrom, int endRow, int endCol) 
+                 
+//startRow and startCol are startTo
+//endRow and endCol are endFrom
+//startRowFrom and startColFrom are startFrom
+
   {
     Pixel fromPixel = null;
     Pixel toPixel = null;
     Pixel[][] toPixels = this.getPixels2D();
     Pixel[][] fromPixels = fromPic.getPixels2D();
-    for (int fromRow = 0, toRow = startRow; 
+    for (int fromRow = startRowFrom, toRow = startRow; 
          fromRow < endRow &&
          toRow < toPixels.length; 
          fromRow++, toRow++)
     {
-      for (int fromCol = 0, toCol = startCol; 
+      for (int fromCol = startColFrom, toCol = startCol; 
            fromCol < endCol &&
            toCol < toPixels[0].length;  
            fromCol++, toCol++)
@@ -384,6 +392,19 @@ public void copy(Picture fromPic,
         toPixel.setColor(fromPixel.getColor());
       }
     }   
+  }
+  
+  public void myCollage()
+  {
+      Picture seagull = new Picture("seagull.jpg");
+      Picture seagullNoGreen = new Picture("seagull.jpg");
+      seagullNoGreen.zeroBlue();
+      this.copy(seagullNoGreen, 238, 130, 236, 235, 321, 345);//copies seagull
+      Picture swan = new Picture("swan.jpg");
+      this.copy(swan, 58, 325, 66, 73, 279, 391);//copies swan
+      //copies ocean
+      this.copy(seagull, 58, 325, 34, 21, 147, 250); 
+     
   }
   /** Method to create a collage of several pictures */
   public void createCollage()
@@ -437,9 +458,7 @@ public void copy(Picture fromPic,
    */
   public static void main(String[] args) 
   {
-    Picture beach = new Picture("beach.jpg");
-    beach.explore();
-    beach.zeroBlue();
+    Picture beach = new Picture("swan.jpg");
     beach.explore();
   }
   
