@@ -135,9 +135,18 @@ public class PictureTester
   {
       Picture canvas = new Picture("seagull.jpg");
       canvas.myCollage();
-      canvas.explore();
-      
+      canvas.explore();   
   }
+  
+  public static void testKimCollage()
+  {
+     Picture ocean = new Picture("beach.jpg");
+     Picture flower = new Picture("snowman.jpg");
+     
+     ocean.copy(flower, 10, 10, 60, 160, 180, 230);
+     ocean.explore();
+  }
+    
   /** Method to test edgeDetection */
   public static void testEdgeDetection()
   {

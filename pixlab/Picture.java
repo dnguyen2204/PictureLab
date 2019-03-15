@@ -404,6 +404,7 @@ public void copy(Picture fromPic,
       this.copy(swan, 58, 325, 66, 73, 279, 391);//copies swan
       //copies ocean
       this.copy(seagull, 58, 325, 34, 21, 147, 250); 
+      this.write("myCollage.jpg");
      
   }
   /** Method to create a collage of several pictures */
@@ -424,16 +425,22 @@ public void copy(Picture fromPic,
   }
   
   
+  
   /** Method to show large changes in color 
     * @param edgeDist the distance for finding edges
     */
+  //edgeDist is the minimum "edgeness" for it to detect.
+  //lower number means more sensitive to edges, and vice versa
   public void edgeDetection(int edgeDist)
   {
     Pixel leftPixel = null;
     Pixel rightPixel = null;
     Pixel[][] pixels = this.getPixels2D();
     Color rightColor = null;
-    for (int row = 0; row < pixels.length; row++)
+    Pixel topPixel = null;
+    Pixel bottomPixel = null;
+    Color bottomColor = null;
+    for (int row = 0; row < pixels.length-1; row++)
     {
       for (int col = 0; 
            col < pixels[0].length-1; col++)
@@ -441,11 +448,17 @@ public void copy(Picture fromPic,
         leftPixel = pixels[row][col];
         rightPixel = pixels[row][col+1];
         rightColor = rightPixel.getColor();
-        if (leftPixel.colorDistance(rightColor) > 
-            edgeDist)
+  
+        bottomPixel = pixels[row+1][col];
+        bottomColor = bottomPixel.getColor();
+        if (leftPixel.colorDistance(rightColor) > edgeDist 
+        || leftPixel.colorDistance(bottomColor) > edgeDist)
           leftPixel.setColor(Color.BLACK);
         else
           leftPixel.setColor(Color.WHITE);
+          
+          
+        
       }
     }
   }
